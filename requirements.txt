@@ -2,3 +2,4 @@ Mako==1.0.4
 invoke==0.13.0
 invocations==0.13.0
 watchdog==0.8.3
+ghp-import==0.4.1

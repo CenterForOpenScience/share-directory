@@ -1,32 +1,37 @@
 import json
-import os
+from pathlib import Path
 import webbrowser
 
 from mako.template import Template
 from invoke import task
 from invocations.watch import watch as watch_task
 
-HERE = SOURCE_DIR = os.path.dirname(os.path.abspath(__file__))
-
+HERE = Path('.')
+BUILD = HERE / 'built'
 
 def collect_json(source_dir):
     ret = []
-    for filename in os.listdir(source_dir):
-        if filename.lower().endswith('.json'):
-            with open(os.path.join(source_dir, filename), 'r') as fp:
-                ret.append(json.load(fp))
+    source_path = Path(source_dir)
+    for file_path in source_path.glob('*.json'):
+        with file_path.open() as fp:
+            ret.append(json.load(fp))
     return sorted(ret, key=lambda each: each['last'])
 
 
 @task
 def build(ctx, browse=False):
-    index = Template(filename=os.path.join(HERE, 'index.mako'))
-    data = collect_json(SOURCE_DIR)
-    with open(os.path.join(HERE, 'index.html'), 'w') as fp:
+    index = Template(filename=str(HERE / 'index.mako'))
+    data = collect_json(str(HERE))
+    try:
+        BUILD.mkdir()
+    except FileExistsError:
+        pass
+    index_path = HERE / 'index.html'
+    with index_path.open('w') as fp:
         fp.write(index.render(data=data))
     print('Finished building site.')
     if browse:
-        webbrowser.open_new_tab(os.path.join(HERE, 'index.html'))
+        webbrowser.open_new_tab(str(index_path))
 
 
 @task
@@ -37,3 +42,11 @@ def watch(ctx, browse=False):
     watch_task(
         ctx, build, ['\.'], ['.*/\..*\.swp']
     )
+
+@task
+def publish(ctx, push=True):
+    build(ctx, browse=False)
+    cmd = 'ghp-import {} -m "Build site"'.format(str(BUILD))
+    if push:
+        cmd += ' -p'
+    ctx.run(cmd, echo=True)
