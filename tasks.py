@@ -17,18 +17,22 @@ def collect_json(source_dir):
             ret.append(json.load(fp))
     return sorted(ret, key=lambda each: each['last'])
 
+def render_site():
+    index = Template(filename=str(HERE / 'index.mako'))
+    return index.render(
+        associates=collect_json(str(HERE / 'associates')),
+        developers=collect_json(str(HERE / 'developers')),
+    )
 
 @task
 def build(ctx, browse=False):
-    index = Template(filename=str(HERE / 'index.mako'))
-    data = collect_json(str(HERE))
     try:
         BUILD.mkdir()
     except FileExistsError:
         pass
-    index_path = HERE / 'index.html'
+    index_path = BUILD / 'index.html'
     with index_path.open('w') as fp:
-        fp.write(index.render(data=data))
+        fp.write(render_site())
     print('Finished building site.')
     if browse:
         webbrowser.open_new_tab(str(index_path))
