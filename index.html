@@ -61,6 +61,10 @@
 
             /* */
 
+            .header-links {
+              padding-top: 15px;
+            }
+
             h1,h2,h3,p {
               display:table;
               padding:0;
@@ -91,9 +95,6 @@
               position:absolute;margin:0 0 0 -200px;
             }
 
-            header>p{
-              margin:0;
-            }
             @media screen and (max-width:700px){body{margin:0;}header{position:static;margin:0 0 2em;}}
 
             .entries {
@@ -112,7 +113,10 @@
 
         <header>
         <h1>SHARE Directory</h1>
-        <p><a href="https://github.com/CenterForOpenScience/SHARE">SHARE @ GitHub</a></p>
+        <div class="header-links">
+          <p><a href="https://github.com/CenterForOpenScience/SHARE">SHARE @ GitHub</a></p>
+          <p><a href="https://github.com/CenterForOpenScience/share-directory">Add yourself</a></p>
+        </div>
         </header>
 
         <div class="entries">
