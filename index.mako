@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
-            @import 'https://fonts.googleapis.com/css?family=Cousine';
+          @import 'https://fonts.googleapis.com/css?family=Cousine:400,700';
             body{
               font-family:
             'Cousine',Menlo,Consolas,monospace;
@@ -145,8 +145,8 @@
 
 
 <%def name="render_entry(data)">
-  <h3>${data['last']}, ${data['first']}</h3>
-  % if data.get('osf'):
+  <h3><strong>${data['last']}, ${data['first']}</strong></h3>
+  % if data.get('personal'):
     <p>Website: <a href="${data['personal']}">${data['personal']}</a></p>
   % endif
 
