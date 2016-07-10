@@ -3,3 +3,5 @@ invoke==0.13.0
 invocations==0.13.0
 watchdog==0.8.3
 ghp-import==0.4.1
+pytest==2.9.2
+schema==0.5.0
