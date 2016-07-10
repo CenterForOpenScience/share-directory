@@ -1,5 +1,7 @@
 # SHARE Directory
 
+[![Build Status](https://travis-ci.org/CenterForOpenScience/share-directory.svg?branch=master)](https://travis-ci.org/CenterForOpenScience/share-directory)
+
 This repo has two purposes:
 
 - Provide a directory listing of the people building and using SHARE

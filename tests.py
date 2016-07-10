@@ -3,6 +3,8 @@ from pathlib import Path
 
 from schema import Schema, Optional
 
+from tasks import render_site
+
 HERE = Path('.')
 SCHEMA = Schema({
     'first': str,
@@ -25,3 +27,6 @@ def test_associates():
 
 def test_developers():
     validate('developers')
+
+def test_site_renders():
+    assert render_site()
