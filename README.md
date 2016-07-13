@@ -9,16 +9,16 @@ This repo has two purposes:
 
 ## Add yourself
 
-1. Add a JSON file with your name as the filename, e.g. `brian-may.json`, to the appropriate directory. Fill out your information.
+1. Add a JSON file with your name as the filename, e.g. `taylor-swift.json`, to the appropriate directory. Fill out your information.
 2. Send a PR.
 
 Example JSON file:
 
 ```json
 {
-    "first": "Brian",
-    "last": "May",
-    "twitter": "DrBrianMay"
+    "first": "Taylor",
+    "last": "Swift",
+    "twitter": "SwiftOnSecurity"
 }
 ```
 
