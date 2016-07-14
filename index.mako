@@ -18,7 +18,6 @@
               margin:0 0 0 200px;
             word-wrap:break-word;
             -webkit-text-size-adjust:none;
-            max-width:600px;
             }
 
             h1{
@@ -145,24 +144,35 @@
 
 
 <%def name="render_entry(data)">
-  <h3><strong>${data['last']}, ${data['first']}</strong></h3>
+  <div>
+  <h3 style="display: inline;"><strong>${data['last']}, ${data['first']}</strong></h3>
   % if data.get('personal'):
-    <p>Website: <a href="${data['personal']}">${data['personal']}</a></p>
+  |
+    <span><a href="${data['personal']}">Website</a></span>
   % endif
+
 
   % if data.get('email'):
-    <p>Email: <a href="mailto:${data['email']}">${data['email']}</a></p>
+  |
+    <span><a href="mailto:${data['email']}">Email</a></span>
   % endif
+
   % if data.get('twitter'):
-    <p>Twitter: <a href="https://twitter.com/${data['twitter']}/">@${data['twitter']}</a></p>
+
+  |
+    <span><a href="https://twitter.com/${data['twitter']}/">Twitter</a></span>
   % endif
+
 
   % if data.get('github'):
-    <p>GitHub: <a href="https://github.com/${data['github']}/">${data['github']}</a></p>
+  |
+    <span><a href="https://github.com/${data['github']}/">GitHub</a></span>
   % endif
+
 
   % if data.get('osf'):
-    <p>OSF ID: <a href="https://osf.io/${data['osf']}/">${data['osf']}</a></p>
+  |
+    <span><a href="https://osf.io/${data['osf']}/">OSF</a></span>
   % endif
-
+  </div>
 </%def>
