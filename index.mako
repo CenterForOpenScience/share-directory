@@ -64,6 +64,10 @@
               padding-top: 15px;
             }
 
+            .links {
+              font-size: 0.8em;
+            }
+
             h1,h2,h3,p {
               display:table;
               padding:0;
@@ -145,34 +149,32 @@
 
 <%def name="render_entry(data)">
   <div>
-  <h3 style="display: inline;"><strong>${data['last']}, ${data['first']}</strong></h3>
-  % if data.get('personal'):
-  |
-    <span><a href="${data['personal']}">Website</a></span>
-  % endif
+    <h3 style="display: inline;"><strong>${data['last']}, ${data['first']}</strong></h3>
+    <span class="links">
+    % if data.get('personal'):
+    |
+      <span><a href="${data['personal']}">Website</a></span>
+    % endif
 
+    % if data.get('email'):
+    |
+      <span><a href="mailto:${data['email']}">Email</a></span>
+    % endif
 
-  % if data.get('email'):
-  |
-    <span><a href="mailto:${data['email']}">Email</a></span>
-  % endif
+    % if data.get('twitter'):
+    |
+      <span><a href="https://twitter.com/${data['twitter']}/">Twitter</a></span>
+    % endif
 
-  % if data.get('twitter'):
+    % if data.get('github'):
+    |
+      <span><a href="https://github.com/${data['github']}/">GitHub</a></span>
+    % endif
 
-  |
-    <span><a href="https://twitter.com/${data['twitter']}/">Twitter</a></span>
-  % endif
-
-
-  % if data.get('github'):
-  |
-    <span><a href="https://github.com/${data['github']}/">GitHub</a></span>
-  % endif
-
-
-  % if data.get('osf'):
-  |
-    <span><a href="https://osf.io/${data['osf']}/">OSF</a></span>
-  % endif
+    % if data.get('osf'):
+    |
+      <span><a href="https://osf.io/${data['osf']}/">OSF</a></span>
+    % endif
+    </span>
   </div>
 </%def>

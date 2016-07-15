@@ -16,17 +16,21 @@ SCHEMA = Schema({
     Optional('github'): str,
 })
 
+
 def validate(path):
     source_path = HERE / path
     for file_path in source_path.glob('*.json'):
         with file_path.open() as fp:
             SCHEMA.validate(json.load(fp))
 
+
 def test_associates():
     validate('associates')
 
+
 def test_developers():
     validate('developers')
+
 
 def test_site_renders():
     assert render_site()
